@@ -35,9 +35,26 @@ const removeTask = (id) => {
     tasks.splice(index, 1)
 }
 
+const completeTask = (id) => {
+    const task = tasks.find((task) => task.id === id)
+    task.done = true
+}
 
+const getUserTasks = (userId) => {
+    return tasks.filter((task) => task.userId === userId)
+}
 
-addTask("study javascript", 1)
-console.log("Before:", tasks)
+console.log("=== Tasks at start ===")
+console.log(getUserTasks(1))
+
+addTask("Learn React", 1)
+console.log("=== After adding ===")
+console.log(getUserTasks(1))
+
+completeTask(101)
+console.log("=== After completing ===")
+console.log(getUserTasks(1))
+
 removeTask(101)
-console.log("After:", tasks)
+console.log("=== After removing ===")
+console.log(getUserTasks(1))
